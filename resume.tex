@@ -1,0 +1,577 @@
+%%%%%%% Run this file with XeLaTeX or LuaLaTeX: xelatex resume.tex %%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+% --------------------
+% Packages
+% --------------------
+\usepackage[margin=0.8cm,footskip=10pt]{geometry}
+\usepackage{parskip}
+\usepackage{setspace}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{soul} % underline that wraps properly
+
+% --------------------
+% Base formatting
+% --------------------
+\newlength{\cvH}
+\setlength{\cvH}{\dimexpr\textheight-\topskip\relax}
+\setstretch{1.05}
+\setlength{\parindent}{0pt}
+\setlist[itemize]{leftmargin=*, itemsep=0.2em, topsep=0.2em}
+
+% Underline tuning for soul: \setul{depth}{thickness}
+\setul{0.30ex}{0.12ex}
+
+% Font (XeLaTeX / LuaLaTeX required)
+\setmainfont{Times New Roman}
+
+% Colors
+\definecolor{cvblue}{HTML}{517DB5}
+\definecolor{cvgray}{HTML}{848282}
+\colorlet{cvlinegray}{cvgray!55}
+
+% Training item indent
+\newlength{\trainindent}
+\setlength{\trainindent}{1.2em} % adjust to taste
+
+
+% Convenience commands
+\newcommand{\bluebf}[1]{{\color{cvblue}\textbf{#1}}}
+\newcommand{\graybf}[1]{{\color{cvgray}\textbf{#1}}}
+\newcommand{\blackbf}[1]{{\color{black}\textbf{#1}}}
+
+\newcommand{\gray}[1]{{\color{cvgray}#1}}
+\newcommand{\blue}[1]{{\color{cvblue}#1}}
+\newcommand{\black}[1]{{\color{black}#1}}
+
+% Underlined links
+\newcommand{\grayulink}[2]{%
+  \href{#1}{\gray{\ul{#2}}}%
+}
+
+\newcommand{\blueulink}[2]{%
+  \href{#1}{\blue{\ul{#2}}}%
+}
+
+\newcommand{\blackulink}[2]{%
+  \href{#1}{\color{black}\ul{#2}}%
+}
+
+\newcommand{\yearhdr}[1]{%
+  \vspace{0.25em}%
+  {\black{#1}}\par
+  \vspace{0.25em}%
+}
+
+
+% --------------------
+% Left column helpers
+% --------------------
+\newcommand{\lrule}{%
+  \vspace{0.6em}%
+  \centerline{{\color{cvlinegray}\rule{0.5\linewidth}{0.5pt}}}%
+  \vspace{0.6em}%
+}
+
+\newcommand{\lsectionblock}[2]{%
+  \graybf{#1}\par
+  \vspace{0.6em}%
+  #2\par
+  \lrule
+}
+
+% --------------------
+% Right column helpers
+% --------------------
+\newcommand{\rheading}[1]{%
+  \vspace{0.6em}%
+  \noindent\makebox[\linewidth]{%
+    \leaders\hrule height 0.5pt\hfill
+    \hspace{2em}\graybf{#1}\hspace{2em}%
+    \leaders\hrule height 0.5pt\hfill
+  }%
+  \vspace{0.6em}%
+}
+
+% --------------------
+% Double vertical separator
+% --------------------
+\newcommand{\doublevsep}{%
+  \begin{minipage}[t][\cvH][c]{0.03\textwidth}
+    \centering
+    \vspace{0pt}%
+    {\color{cvlinegray}\rule{0.5pt}{\cvH}\hspace{1.6pt}\rule{0.5pt}{\cvH}}%
+  \end{minipage}%
+}
+
+% --------------------
+% Page macro: two columns + separator (unbreakable per page)
+% Left + right vertically centered
+% --------------------
+\newcommand{\cvpage}[2]{%
+  \noindent
+  \begin{minipage}[t][\cvH][c]{0.30\textwidth}
+    \centering
+    \vspace{0pt}%
+    #1
+  \end{minipage}
+  \hfill
+  \doublevsep
+  \hfill
+  \begin{minipage}[t][\cvH][c]{0.64\textwidth}
+    \vspace{0pt}%
+    #2
+  \end{minipage}
+  \par\newpage
+}
+
+\newcommand{\trainitem}[2]{%
+  \par\noindent
+  \hangindent=\trainindent
+  \hangafter=1
+  {\gray{\textperiodcentered}}\hspace{0.5em}%
+  \blue{#1}%
+  \if\relax\detokenize{#2}\relax\else\hspace{0.6em}\gray{#2}\fi
+  \par\vspace{0.18em}%
+}
+
+
+\begin{document}
+
+% ============================================================
+% PAGE 1
+% ============================================================
+\cvpage{
+
+{\fontsize{42}{44}\selectfont Valentin Guigon}\par
+\vspace{0.8em}
+
+\lrule
+
+\lsectionblock{CURRENT\\POSITION}{
+\blue{Postdoctoral researcher}\par
+\grayulink{https://sldlab.umd.edu/}{Social Learning and Decisions Lab}\par
+\gray{UMD | March 2024 -- ongoing}\par
+\vspace{0.6em}
+\blue{Affiliate researcher}\par
+\grayulink{https://aim.umd.edu/}{Artificial Intelligence Interdisciplinary Institute at Maryland}\par
+\vspace{0.6em}
+\grayulink{https://nacs.umd.edu/}{Neuroscience and Cognitive Science (NACS) program, UMD}\par
+}
+
+\lsectionblock{RESEARCH\\AND PERSONAL\\INTERESTS}{
+\gray{Beliefs}\par
+\gray{Emotions}\par
+\gray{Information}\par
+\gray{Social learning}\par
+\gray{Decision-making}\par
+\gray{Computational psychiatry}\par
+\gray{Computational neuroscience}\par
+\gray{NeuroAI}\par
+
+\vspace{0.9em}
+
+\gray{Social sciences}\par
+\gray{Public policies}\par
+\gray{Epistemology}
+}
+
+\lsectionblock{CONTACT}{
+\gray{+33 6 68 74 10 64}\par
+\gray{+1 202 627 8960}\par
+\vspace{0.9em}
+\gray{3150 Biology--Psychology Building}\par
+\gray{4094 Campus Dr, College Park}\par
+\gray{MD 20742, USA}\par
+\vspace{0.9em}
+\grayulink{mailto:vguigon@umd.edu}{vguigon@umd.edu}\par
+\grayulink{https://valentinguigon.github.io/}{personal website}\par
+\grayulink{https://github.com/ValentinGuigon}{github}
+}
+
+
+
+}{
+
+\rheading{PHD THESIS}
+
+\parbox{0.95\linewidth}{\centering
+\blackbf{Guigon, V.}\black{(2022). }
+\blackulink{https://theses.hal.science/tel-04817845}
+{Neurocognitive mechanisms underlying transmission of uncertain information in humans.}\par
+}
+\vspace{0.7em}
+
+
+
+\rheading{EDUCATION}
+
+\bluebf{Doctorate degree -- Biology: Cognitive neuroscience}\par
+\graybf{2018--2022 \,|\, Neurosciences and Cognition Doctorate School, Lyon 1, France}
+
+\vspace{0.6em}
+
+\bluebf{Master degree -- Cognitive science}\par
+\graybf{2016--2018 \,|\, Psychology Faculty, Lyon 2, France}
+
+\vspace{0.6em}
+
+\bluebf{Licence degree -- Physiology \& Neuroscience (Cognitive and Adaptative)}\par
+\graybf{2015--2016 \,|\, Sciences Faculty, Marseille Saint-Charles, France}
+
+\vspace{0.6em}
+
+\bluebf{Licence degree -- Psychology}\par
+\graybf{2012--2015 \,|\, Human Sciences Faculty, Aix-en-Provence, France}
+
+\vspace{1.0em}
+
+
+
+\rheading{RESEARCH EXPERIENCE}
+
+\bluebf{Post-doctorate | Social Learning and Decisions Lab}\par
+Department of Psychology, University of Maryland, MD, USA\par
+March 2024 -- ongoing \,|\, Social decision making
+
+\gray{Studies: Neurocomputational mechanisms underlying neurotypical and neuroatypical learning in social contexts. Individual differences in dynamic belief updating during trust learning.}\par
+\gray{Tools: Matlab (SPM), R, Python (PyMC, fMRIprep, Nilearn, Fitlins)}\par
+\gray{Project management: Behavioral and neuroimaging studies, Lab Operations, Lab Automatization}\par
+\gray{Management: Joshua Berman, Atharv Umap, Gaurav D. Mahajan}\par
+\gray{PI: Caroline Charpentier}
+
+\vspace{0.9em}
+
+\bluebf{Post-doctorate | Neuroeconomics (ISCMJ \& GATE)}\par
+CNRS UMR 5229 \& CNRS UMR 2824, France\par
+March 2023 -- October 2023 \,|\, Social decision making
+
+\gray{Studies: Neurocognitive mechanisms underlying transmission of uncertain information in humans. Beliefs updating in social networks.}\par
+\gray{Tools: Matlab (VBA toolbox, SPM), R (JAGS, BRMS)}\par
+\gray{Project management: Behavioral study}\par
+\gray{PIs: Marie Claire Villeval, Jean-Claude Dreher}
+
+\vspace{0.9em}
+
+\bluebf{PhD | Neuroeconomics (ISCMJ \& GATE)}\par
+CNRS UMR 5229 \& CNRS UMR 2824, France\par
+October 2018 -- December 2022 \,|\, Social decision making
+
+\gray{Studies: Neurocognitive mechanisms underlying transmission of uncertain information in humans.}\par
+\gray{Tools: Matlab (VBA toolbox, SPM), R (JAGS, BRMS)}\par
+\gray{Project management: Behavioral and neuroimaging studies}\par
+\gray{PhD directors: Marie Claire Villeval, Jean-Claude Dreher}
+
+\vspace{0.9em}
+
+\bluebf{Research Internship | Neuroeconomics lab. (ISCMJ)}\par
+CNRS UMR 5229, France\par
+February -- July 2018 \,|\, Decision making \& rewarding
+
+\gray{Study: gPPI analysis of testosterone--induced effects on orbitofrontal-amygdala relationships during anticipation of primary and secondary rewards.}\par
+\gray{Tools: Matlab (SPM, CONN)}\par
+\gray{Missions: Brain functional connectivity analysis}\par
+\gray{PI: Jean-Claude Dreher}
+
+} % end page
+
+% ============================================================
+% PAGE 2
+% ============================================================
+\cvpage{
+
+\lrule
+
+\lsectionblock{SKILLS}{
+\gray{Computational Modeling \& Simulation}\par
+\gray{Bayesian Statistical Analysis \& Inference}\par
+\gray{Reinforcement Learning \& Decision-Making Models}\par
+\gray{Experimental Design \& Behavioral Task Optimization}\par
+\gray{Project Leadership \& Cross-Disciplinary Collaboration}\par
+\gray{Teaching, Mentoring \& Scientific Communication}
+}
+
+\lsectionblock{FELLOWSHIPS}{
+\gray{LabEX CORTEX fellowship (2022--2023)}\par
+\gray{LabEX CORTEX fellowship (2021--2022)}\par
+\gray{IDEX INDEPTH PhD fellowship (2018--2021)}
+}
+
+\lsectionblock{CONTRIBUTIONS}{
+\gray{Cortex-magazine, editorial board member}\par
+\gray{(January 2023 -- January 2024)}
+}
+
+\lsectionblock{AFFILIATIONS}{
+\gray{Affiliate, AI Interdisciplinary Institute at Maryland (2024--ongoing)}\par
+\gray{Affiliate, Neuroscience and Cognitive Science (NACS) program (2025--ongoing)}
+}
+
+
+
+}{
+\rheading{RESEARCH EXPERIENCE}
+
+\bluebf{Research Internship | Neuroeconomics lab. (ISCMJ)}\par
+CNRS UMR 5229, France\par
+June -- August 2017 \,|\, Decision making \& rewarding
+
+\gray{Studies: Functional connectivity analysis in rewarded tasks and implementation of moral norms in tDCS disrupted decision-making behaviors.}\par
+\gray{Tools: Matlab (SPM, CONN)}\par
+\gray{Missions: fMRI analysis; research and ethics protocols}\par
+\gray{PI: Jean-Claude Dreher}
+
+\vspace{0.9em}
+
+\bluebf{Additional early experiences (summary)}\par
+\gray{Integrative and Adaptative Neurosciences Laboratory (CNRS UMR 7260, 2016): vestibular cortex; complex systems modelling.}\par
+\vspace{0.7em}
+\gray{Cognitive Psychology Laboratory (CNRS UMR 7290, 2015); La Poste: nudging risky behaviors and ecological transition.}\par
+\vspace{0.7em}
+\gray{Speech and Language Laboratory (CNRS UMR 7309, 2014): theory of mind; schizophrenia; data collection and behavioral analysis.}
+
+\vspace{0.9em}
+
+
+
+\rheading{TEACHING EXPERIENCE}
+
+{\fontsize{10}{12}\selectfont
+
+\bluebf{Teacher | NACS 645 Cognitive Science (U. of Maryland)}\par
+\black{September--December 2025 \,|\, 11 PhD students}\par
+\black{Content: }
+\blackulink{https://valentinguigon.github.io/teaching/\#2025-umd}
+{Foundational debates in cognitive science.}\par
+\gray{Classes: Concepts; Modularity; Embodied cognition; Brain architecture; Cognitive architecture; Innateness; Methods; Social cognition; Intercultural cognition; Cognitive systems; Thinking; NeuroAI.}\par
+\vspace{0.7em}
+
+\bluebf{Teacher | Cortecs Critical Thinking Summer School (France)}\par
+\black{July 2025 \,|\, 20 students}\par
+\black{Content: }
+\blackulink{https://valentinguigon.github.io/teaching/2025_Cortecs_Cours_entier/}
+{Information; Beliefs; Predictions.}\par
+\vspace{0.7em}
+
+\bluebf{Mentor | UMD PhD (U. of Maryland)}\par
+\black{September 2024--April 2025 \,|\, 1 student}\par
+\vspace{0.7em}
+
+\bluebf{Mentor | Neurosciences Master 1 (U. Claude Bernard Lyon 1)}\par
+\black{January--June 2023, 2024 \,|\, 2 $\times$ 3 students}\par
+\vspace{0.7em}
+
+\bluebf{Teacher | SPM fMRI preprocessing \& contrasts (U. Claude Bernard Lyon 1)}\par
+\black{June 2023 \,|\, 20 PhD students}\par
+\black{Content: }
+\blackulink{https://valentinguigon.github.io/teaching/2023_NSCO_fMRI_course/}
+{fMRI preprocessing and first-level modeling with SPM.}\par
+\vspace{0.7em}
+
+\bluebf{Teaching assistant | Cognitive Psychology (U. Lumière Lyon 2)}\par
+\black{September--December 2018, 2019, 2020 \,|\, 4 $\times$ 40 students}\par
+\gray{Course: Cognitive psychology, Licence 2}\par
+\gray{Classes: Research methodology; Emotions; Working memory; Executive functions; Language.}\par
+\gray{Supervisor: Gaën Plancher.}\par
+\vspace{0.7em}
+
+\bluebf{Teaching assistant | Intro. to cognitive psychology (U. Lumière Lyon 2)}\par
+\black{September--December 2017 \,|\, 2 $\times$ 40 students}\par
+\gray{Course: Introduction to cognitive psychology, Licence 1}\par
+\gray{Classes: Research methodology; Theoretical and experimental paradigms.}\par
+\gray{Supervisor: François Osiurak.}\par
+
+} % end fontsize scope
+
+} % end page
+
+% ============================================================
+% PAGE 3
+% ============================================================
+\cvpage{
+
+\lrule
+
+\lsectionblock{EXTERNAL\\TRAINING}{
+\raggedright
+
+\yearhdr{2025}
+\trainitem{Hugging Face AI Agents, 28h}{}
+
+\yearhdr{2024}
+\trainitem{Hugging Face Deep RL, 28h}{Certified}
+\trainitem{Reproducible Research, INRIA (FUN-MOOC), 24h}{Certified}
+\trainitem{ML with scikit-learn, INRIA (FUN-MOOC), 36h}{Certified}
+\trainitem{Structural Equation Modeling, CenterStat, 18h}{Certified}
+\trainitem{Game Theory, Stanford U. (Coursera), 17h}{}
+
+\yearhdr{2023}
+\trainitem{Hugging Face NLP Course, 49h}{}
+\trainitem{CS50, Harvard U. (edX), 30h}{}
+\trainitem{ML with Python, IBM (Coursera), 15h}{}
+
+\yearhdr{2022}
+\trainitem{Bayesian Statistics in Evolutionary Biology, LBBE, UCBL1, 27h}{Certified}
+
+\yearhdr{2021}
+\trainitem{Statistical Bayesian Modelling, L. Nalborczyk, MaiMoSiNe, 20h}{Certified}
+\trainitem{Integrity and Ethics in Research Careers, UDL (FUN-MOOC), 30h}{Certified}
+
+\yearhdr{2020}
+\trainitem{Model Thinking, S.E. Page (Coursera), 27h}{}
+
+\yearhdr{2019}
+\trainitem{Noninvasive Brain Stimulation Workshop, 14h}{Certified}
+\trainitem{Leaders of Learning, Harvard U. (FUN-MOOC), 15h}{Certified}
+\trainitem{Intro. to Neuroeconomics (Coursera), 31h}{}
+
+\yearhdr{2018}
+\trainitem{Principles of fMRI I \& II, M. Lindquist (Coursera), 17h}{}
+
+}
+
+
+
+}{
+\rheading{PUBLICATIONS}
+
+\parbox{0.95\linewidth}{\centering
+\blackbf{Guigon, V.}\black{, Geay, L., \& Charpentier, C. J. (2026). }
+{Rethinking misinformation through plausibility estimation and confidence calibration. }
+\black{\textit{Communications Psychology}, in press.}\par
+}
+\vspace{0.7em}
+
+\parbox{0.95\linewidth}{\centering
+\blackbf{Guigon, V.}\black{, Villeval, M. C., \& Dreher, J. C. (2024). }
+\blackulink{https://www.nature.com/articles/s44271-024-00170-w}
+{Metacognition biases information seeking in assessing ambiguous news. }
+\black{\textit{Communications Psychology}, 2(1), 122.}\par
+}
+\vspace{0.7em}
+
+\parbox{0.95\linewidth}{\centering
+\black{Hu, Y.,} \blackbf{Guigon, V.}\black{, Philippe, R., Zhao, S., Derrington, E., Corgnet, B., \ldots{} \& Dreher, J. C. (2022). }
+\blackulink{https://journals.sagepub.com/doi/abs/10.1177/09567976211042379}
+{Perturbation of Right Dorsolateral Prefrontal Cortex Makes Power Holders Less Resistant to Tempting Bribes. }
+\black{\textit{Psychological Science}, 33(3), 412--423.}\par
+}
+\vspace{0.7em}
+
+\parbox{0.95\linewidth}{\centering
+\black{O'Connor, D. A., Janet, R., }\blackbf{Guigon, V.}\black{, Belle, A., Vincent, B. T., Bromberg, U., \ldots{} \& Dreher, J. C. (2021). }
+\blackulink{https://www.cell.com/iscience/fulltext/S2589-0042(21)00260-1}
+{Rewards that are near increase impulsive action. }
+\black{\textit{iScience}, 24(4), 102292.}\par
+}
+
+\vspace{0.9em}
+
+
+
+\rheading{MANUSCRIPTS IN PREPARATION}
+
+\parbox{0.95\linewidth}{\centering
+\blackbf{Guigon, V.}\black{, Topel, S., Charpentier, C. J. Individual differences in dynamic belief updating during trust learning.}\par
+{\small\emph{\blackulink{https://valentinguigon.github.io/assets/pdf/posters/Poster_2025_SNE_CISE.pdf}{Conference presentations}: SNE (2025); CISE (2025).}}
+}
+\vspace{0.7em}
+
+\parbox{0.95\linewidth}{\centering
+\blackbf{Guigon, V.}\black{, Benistant, J., Villeval, M. C., Dreher, J.-C. Neurocomputational processes of inferring others’ preferences for information .}\par
+{\small\emph{\blackulink{https://valentinguigon.github.io/assets/pdf/posters/Poster_2023_SBDM_A0.pdf}{Conference presentations}: SBDM (2021, 2023); SNE (2021).}}
+}
+\vspace{0.7em}
+
+\parbox{0.95\linewidth}{\centering
+\blackbf{Guigon, V.}\black{, Dunne, S., Pazderska, A., Frodl, T., Nolan, J. J., Clairis, N., O’Doherty, J. P., Dreher, J.-C. Testosterone causes decoupling of orbitofrontal cortex--amygdala relationship while anticipating primary and secondary rewards.}\par
+{\small\emph{\blackulink{https://valentinguigon.github.io/assets/pdf/posters/Poster_2018_ofcmeeting_A0.pdf}{Conference presentation}: OFC Meeting (2018).}}
+}
+\vspace{0.7em}
+
+\parbox{0.95\linewidth}{\centering
+\black{Benistant, J., }\blackbf{Guigon, V.}\black{, Nicolas, A., Derrington, E., \& Dreher, J. C. (2025). } 
+\blackulink{https://www.biorxiv.org/content/10.1101/2024.05.21.594859v1.abstract}
+{Dynamic valuation bias explains social influence on cheating behavior. }
+\black{\textit{bioRxiv}.}\par}
+\vspace{0.7em}
+
+\vspace{0.9em}
+
+\rheading{SCIENCE DISSEMINATION}
+
+\parbox{0.95\linewidth}{\centering
+\gray{Valentin Guigon }
+\grayulink{https://valentinguigon.substack.com/}{Substack}\par
+}
+\vspace{0.7em}
+
+\parbox{0.95\linewidth}{\centering
+\gray{Valentin Guigon }
+\grayulink{https://medium.com/@valentin.guigon}{Medium}\par
+}
+\vspace{0.7em}
+
+\parbox{0.95\linewidth}{\centering
+\graybf{V. Guigon (2025). }
+\grayulink{https://cortecs.org/informations-medias/la-sphere-publique-et-la-chambre-decho/}
+{La sphère publique et la chambre d’écho. }
+\gray{Cortecs.org.}\par
+}
+\vspace{0.7em}
+
+\parbox{0.95\linewidth}{\centering
+\gray{S. Tremblay \& CheeseNaan Productions (2024). }
+\grayulink{https://open.spotify.com/episode/60KNvDzRGybcj7CtiYglTi?si=93b89657cbf64983}
+{Au-delà des écrans : comprendre la désinformation en ligne.}\par
+}
+\vspace{0.7em}
+
+\parbox{0.95\linewidth}{\centering
+\graybf{V. Guigon (2023). }
+\grayulink{https://www.cortex-mag.net/notre-societe-est-elle-de-plus-en-plus-polarisee/}
+{Notre société est-elle de plus en plus polarisée ? }
+\gray{Cortex-mag.net.}\par
+}
+\vspace{0.7em}
+
+\parbox{0.95\linewidth}{\centering
+\gray{A. Sorce (2021). }
+\grayulink{https://pharefm.com/2021/09/10/linvite-de-la-semaine-valentin-guigon-fake-news-complot/}
+{L’invité de la semaine – Valentin Guigon, fake news et théories du complot. }
+\gray{Pharefm.com.}\par
+}
+\vspace{0.7em}
+
+\parbox{0.95\linewidth}{\centering
+\gray{O. Mollaret (2021). }
+\grayulink{https://www.rue89lyon.fr/2021/08/16/lyon-victimes-fake-news/}
+{À Lyon : les victimes de fake news « fonctionnent comme tout le monde ». }
+\gray{Rue89lyon.fr.}\par
+}
+\vspace{0.7em}
+
+\parbox{0.95\linewidth}{\centering
+\gray{Yanis (2021). }
+\grayulink{https://smartlink.ausha.co/cognitif/episode-bonus-comment-ne-pas-se-faire-avoir-par-les-fake-news}
+{Comment ne pas se faire avoir par les fake news ? }
+\gray{Alveole.media / Cognitif.}\par
+}
+\vspace{0.7em}
+
+\parbox{0.95\linewidth}{\centering
+\gray{A. Gabert (2020). }
+\grayulink{https://www.cortex-mag.net/pourquoi-les-theories-du-complot-plaisent-a-notre-cerveau/}
+{Pourquoi les théories du complot plaisent à notre cerveau. }
+\gray{Cortex-mag.net.}\par
+}
+
+
+\vspace{0.9em}
+
+} % end page
+\end{document}
